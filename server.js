@@ -8,15 +8,14 @@ mongoose.Promise = global.Promise;
 //mongoose.set('debug', true);
 
 // remplacer toute cette chaine par l'URI de connexion à votre propre base dans le cloud s
-const uri = 'mongodb+srv://gobelins:oo7hrJ1Nznu1OCvL@cluster0.phksz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
-
+const uri = 'mongodb+srv://<username>:<password>@cluster0.phksz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 const options = {};
 
 mongoose.connect(uri, options)
     .then(() => {
             console.log("Connecté à la base MongoDB dans le cloud !");
             console.log("at URI = " + uri);
-            console.log("vérifiez with http://localhost:8010/api/handymans que cela fonctionne")
+            console.log("vérifiez with http://localhost:8010/api/handymen que cela fonctionne")
         },
         err => {
             console.log('Erreur de connexion: ', err);
@@ -39,11 +38,11 @@ let port = process.env.PORT || 8010;
 // les routes
 const prefix = '/api';
 
-app.route(prefix + '/handymans')
+app.route(prefix + '/handymen')
     .get(handymen.getAll)
     .post(handymen.create);
 
-app.route(prefix + '/handymans/:id')
+app.route(prefix + '/handymen/:id')
     .get(handymen.getOne)
     .delete(handymen.deleteOne)
     .put(handymen.update);
